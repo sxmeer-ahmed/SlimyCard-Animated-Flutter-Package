@@ -46,7 +46,7 @@ class SlimyCard extends StatefulWidget {
     this.slimeEnabled = true,
   })  : assert(topCardHeight >= 140, 'Height of Top Card must be atleast 150.'),
         assert(bottomCardHeight >= 40,
-            'Height of Bottom Card must be atleast 100.'),
+            'Height of Bottom Card must be atleast 40.'),
         assert(width >= 100, 'Width must be atleast 100.'),
         assert(borderRadius <= 30 && borderRadius >= 0,
             'Border Radius must neither exceed 30 nor be negative');
