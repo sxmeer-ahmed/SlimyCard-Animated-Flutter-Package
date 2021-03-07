@@ -146,13 +146,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          action();
-        });
-      },
-      child: Container(
+    return Container(
         child: Stack(
           alignment: Alignment.topCenter,
           children: <Widget>[
@@ -252,13 +246,19 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
                       ? (widget.topCardHeight - 2 * 50 / 3)
                       : 0,
                 ),
-                Container(
+                GestureDetector(
+                onTap: () {
+        setState(() {
+          action();
+        });
+      },
+                child : Container(
                   height: 50,
                   width: 50,
                   child: RotationTransition(
                     turns: arrowAnimation,
                     child: Icon(Icons.keyboard_arrow_down, color: Colors.black),
-                  ),
+                  )),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
@@ -275,8 +275,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }
 
