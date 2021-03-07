@@ -39,13 +39,13 @@ class SlimyCard extends StatefulWidget {
     this.color = const Color(0xff5858FF),
     this.width = 300,
     this.topCardHeight = 300,
-    this.bottomCardHeight = 140,
+    this.bottomCardHeight = 40,
     this.borderRadius = 25,
     this.topCardWidget,
     this.bottomCardWidget,
     this.slimeEnabled = true,
   })  : assert(topCardHeight >= 140, 'Height of Top Card must be atleast 150.'),
-        assert(bottomCardHeight >= 80,
+        assert(bottomCardHeight >= 40,
             'Height of Bottom Card must be atleast 100.'),
         assert(width >= 100, 'Width must be atleast 100.'),
         assert(borderRadius <= 30 && borderRadius >= 0,
@@ -101,7 +101,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
     super.initState();
     isSeperated = false;
     activeAnimation = 'Idle';
-    initialBottomDimension = 100;
+    initialBottomDimension = 40;
     finalBottomDimension = widget.bottomCardHeight;
     bottomDimension = initialBottomDimension;
     topCardWidget = (widget.topCardWidget != null)
