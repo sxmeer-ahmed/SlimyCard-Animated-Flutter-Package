@@ -246,33 +246,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
                       ? (widget.topCardHeight - 2 * 50 / 3)
                       : 0,
                 ),
-                GestureDetector(
-                onTap: () {
-        setState(() {
-          action();
-          actn();
-          
-        });
-      },
-                child : Container(
-                  height: 50,
-                  width: 50,
-                  child: RotationTransition(
-                    turns: arrowAnimation,
-                    child: Icon(Icons.keyboard_arrow_down, color: Colors.black),
-                  )),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: widget.color.withOpacity(0.3),
-                        blurRadius: 20,
-                        spreadRadius: 1,
-                      ),
-                    ],
-                  ),
-                ),
+                
               ],
             ),
           ],
