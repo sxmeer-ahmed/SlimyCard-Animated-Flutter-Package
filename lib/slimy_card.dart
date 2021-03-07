@@ -78,7 +78,23 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
   ///
   /// It also updates the status of the SlimyCard.
 
- 
+  void action() {
+    if (isSeperated) {
+      isSeperated = false;
+      slimyCard.updateStatus(false);
+      arrowAnimController.reverse();
+      gap = gapInitial;
+      bottomDimension = initialBottomDimension;
+    } else {
+      isSeperated = true;
+      slimyCard.updateStatus(true);
+      arrowAnimController.forward();
+      gap = gapFinal;
+      bottomDimension = finalBottomDimension;
+    }
+
+    activeAnimation = (activeAnimation == 'Idle') ? 'Action' : 'Idle';
+  }
 
   @override
   void initState() {
@@ -234,6 +250,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
                 onTap: () {
         setState(() {
           action();
+          actn();
           
         });
       },
