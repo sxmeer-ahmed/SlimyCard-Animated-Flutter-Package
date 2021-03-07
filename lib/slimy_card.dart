@@ -94,6 +94,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
     }
 
     activeAnimation = (activeAnimation == 'Idle') ? 'Action' : 'Idle';
+    space = false;
   }
 
   @override
@@ -250,7 +251,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
                 onTap: () {
         setState(() {
           action();
-          space=false;
+          
         });
       },
                 child : Container(
