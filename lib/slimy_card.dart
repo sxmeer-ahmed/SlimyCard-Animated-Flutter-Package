@@ -50,8 +50,7 @@ class SlimyCard extends StatefulWidget {
         assert(width >= 100, 'Width must be atleast 100.'),
         assert(borderRadius <= 30 && borderRadius >= 0,
             'Border Radius must neither exceed 30 nor be negative');
-
-  @override
+ @override
   _SlimyCardState createState() => _SlimyCardState();
 }
 
@@ -77,7 +76,6 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
   /// the cards and vice-versa.
   ///
   /// It also updates the status of the SlimyCard.
-
   void action() {
     if (isSeperated) {
       isSeperated = false;
@@ -101,7 +99,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
     super.initState();
     isSeperated = false;
     activeAnimation = 'Idle';
-    initialBottomDimension = 40;
+    initialBottomDimension = 100;
     finalBottomDimension = widget.bottomCardHeight;
     bottomDimension = initialBottomDimension;
     topCardWidget = (widget.topCardWidget != null)
@@ -133,7 +131,6 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
   }
 
   /// It supports multiple states and updates app according to them.
-
   @override
   void didUpdateWidget(SlimyCard oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -146,7 +143,13 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          action();
+        });
+      },
+      child: Container(
         child: Stack(
           alignment: Alignment.topCenter,
           children: <Widget>[
@@ -246,18 +249,36 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
                       ? (widget.topCardHeight - 2 * 50 / 3)
                       : 0,
                 ),
-                
+                Container(
+                  height: 50,
+                  width: 50,
+                  child: RotationTransition(
+                    turns: arrowAnimation,
+                    child: Icon(Icons.keyboard_arrow_down, color: Colors.black),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: widget.color.withOpacity(0.3),
+                        blurRadius: 20,
+                        spreadRadius: 1,
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ],
         ),
-      );
+      ),
+    );
   }
 }
 
 /// `simpleTextWidget` is a place-holder Widget that can be replaced with
 /// `topCardWidget` & `bottomCardWidget`.
-
 Widget simpleTextWidget(String text) {
   return Center(
     child: Text(
@@ -273,7 +294,6 @@ Widget simpleTextWidget(String text) {
 
 /// This is stream(according to BLoC) which enables to update real-time status
 /// of SlimyCard
-
 class StatusBloc {
   var statusController = StreamController<bool>.broadcast();
   Function(bool) get updateStatus => statusController.sink.add;
